@@ -10,6 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import support.util;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 
 public class loginFacebook extends util {
     @FindBy(name = "email") protected WebElement txtEmail;
@@ -17,6 +21,10 @@ public class loginFacebook extends util {
     @FindBy(name = "login") protected WebElement btnLogin;
 
     @FindBy(name = "global_typeahead") protected WebElement txtBuscar;
+    @FindBy(xpath = "/html/body/div[1]/div/div[1]/div/div[2]/div[2]/div/div/div[2]/ul/li[1]") protected WebElement lblBusqueda;
+
+    @FindBy(id = "mount_0_0_KV") protected WebElement pagPerfil;
+
 
     public loginFacebook() {
         PageFactory.initElements(driver, this);
@@ -28,9 +36,12 @@ public class loginFacebook extends util {
         btnLogin.click();
     }
     public void  buscarPerfil(){
-        //Alert alert = driver.switchTo().alert();
-        //alert.accept();
-        System.out.println("hola");
+        wait.until(ExpectedConditions.elementToBeClickable(txtBuscar));
         txtBuscar.sendKeys("Freddy VP");
+        wait.until(ExpectedConditions.elementToBeClickable(lblBusqueda));
+        lblBusqueda.click();
+    }
+    public void mostrarPerfil(){
+        wait.until(ExpectedConditions.visibilityOf(pagPerfil));
     }
 }

@@ -20,5 +20,6 @@ public class facebookDefinition {
     @Cuando("buscamos a un amigo en facebook")
     public void buscamosAUnAmigoEnFacebook() {
         login.buscarPerfil();
+        login.mostrarPerfil();
     }
 }
